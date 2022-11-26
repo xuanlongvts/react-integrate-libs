@@ -1,0 +1,52 @@
+{
+    "name": "with-react-query-cra",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@tanstack/react-query": "^4.17.1",
+        "@tanstack/react-query-devtools": "^4.17.1",
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^14.4.3",
+        "@types/jest": "^29.2.3",
+        "@types/node": "^18.11.9",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.9",
+        "axios": "^1.2.0",
+        "msw": "^0.49.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-scripts": "5.0.1",
+        "typescript": "^4.9.3",
+        "web-vitals": "^3.1.0"
+    },
+    "scripts": {
+        "dev": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
+        "coverage": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom --coverage --watchAll=false",
+        "eject": "react-scripts eject",
+        "pretty": "prettier --write \"./**/*.{js,jsx,json,ts,tsx,html,css,scss}\""
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "prettier": "^2.8.0"
+    }
+}
