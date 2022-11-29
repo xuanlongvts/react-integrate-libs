@@ -4,11 +4,12 @@ import { AppProvider } from '@shopify/polaris';
 import translations from '@shopify/polaris/locales/en.json';
 
 import AppFrame from './AppFrame';
+import Link from './Link';
 
 function App() {
     return (
         <BrowserRouter>
-            <AppProvider i18n={translations}>
+            <AppProvider i18n={translations} linkComponent={Link}>
                 <AppFrame />
             </AppProvider>
         </BrowserRouter>

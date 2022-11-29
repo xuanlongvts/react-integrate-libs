@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Frame, TopBar, Navigation } from '@shopify/polaris';
+import { HomeMinor, OrdersMinor, MarketingMinor, ProductsMinor } from '@shopify/polaris-icons';
 
 import Routes from './Routes';
 
@@ -25,16 +26,63 @@ function AppFrame() {
                     <Navigation.Section
                         items={[
                             {
-                                url: '/',
-                                label: 'Dashboard',
+                                url: '/home',
+                                label: 'Home',
+                                icon: HomeMinor,
+                            },
+                            {
+                                url: '/orders',
+                                label: 'Orders',
+                                icon: OrdersMinor,
+                                badge: '15',
+                                subNavigationItems: [
+                                    {
+                                        url: '/orders/collections',
+                                        disabled: false,
+                                        label: 'Collections',
+                                    },
+                                    {
+                                        url: '/orders/inventory',
+                                        disabled: false,
+                                        label: 'Inventory',
+                                    },
+                                ],
+                            },
+                            {
+                                url: '/marketing',
+                                label: 'Marketing',
+                                icon: MarketingMinor,
+                                badge: '15',
+                                subNavigationItems: [
+                                    {
+                                        url: '/marketing/reports',
+                                        disabled: false,
+                                        label: 'Reports',
+                                    },
+                                    {
+                                        url: '/marketing/live-view',
+                                        disabled: false,
+                                        label: 'Live view',
+                                    },
+                                ],
                             },
                             {
                                 url: '/products',
                                 label: 'Products',
-                            },
-                            {
-                                url: '/settings',
-                                label: 'Settings',
+                                icon: ProductsMinor,
+                                selected: true,
+                                subNavigationItems: [
+                                    {
+                                        url: '/products/collections',
+                                        disabled: false,
+                                        label: 'Collections',
+                                    },
+                                    {
+                                        url: '/products/inventory',
+                                        disabled: false,
+                                        label: 'Inventory',
+                                    },
+                                ],
                             },
                         ]}
                     />
