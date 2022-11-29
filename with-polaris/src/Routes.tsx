@@ -10,10 +10,19 @@ function Dashboard() {
     );
 }
 
-function Products() {
+function ProductsCollection() {
     return (
         <div>
-            <h1>Products</h1>
+            <h1>Products collections</h1>
+            <Outlet />
+        </div>
+    );
+}
+
+function ProductsInventory() {
+    return (
+        <div>
+            <h1>Products Inventory</h1>
             <Outlet />
         </div>
     );
@@ -35,7 +44,9 @@ function RoutesApp() {
                 <Route path="/">
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/settings" element={<Settings />} />
-                    <Route path="/products" element={<Products />} />
+
+                    <Route path="/products/collections" element={<ProductsCollection />} />
+                    <Route path="/products/inventory" element={<ProductsInventory />} />
                 </Route>
             </Routes>
         </>
