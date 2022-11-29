@@ -26,23 +26,23 @@ function AppFrame() {
                     <Navigation.Section
                         items={[
                             {
-                                url: '/home',
+                                url: '/',
                                 label: 'Home',
                                 icon: HomeMinor,
                             },
                             {
-                                url: '/orders',
-                                label: 'Orders',
+                                url: '/products',
+                                label: 'Products',
                                 icon: OrdersMinor,
                                 badge: '15',
                                 subNavigationItems: [
                                     {
-                                        url: '/orders/collections',
+                                        url: '/products/collections',
                                         disabled: false,
                                         label: 'Collections',
                                     },
                                     {
-                                        url: '/orders/inventory',
+                                        url: '/products/inventory',
                                         disabled: false,
                                         label: 'Inventory',
                                     },
@@ -67,18 +67,17 @@ function AppFrame() {
                                 ],
                             },
                             {
-                                url: '/products',
-                                label: 'Products',
+                                url: '/settings',
+                                label: 'Settings',
                                 icon: ProductsMinor,
-                                selected: true,
                                 subNavigationItems: [
                                     {
-                                        url: '/products/collections',
+                                        url: '/settings/collections',
                                         disabled: false,
                                         label: 'Collections',
                                     },
                                     {
-                                        url: '/products/inventory',
+                                        url: '/settings/inventory',
                                         disabled: false,
                                         label: 'Inventory',
                                     },
