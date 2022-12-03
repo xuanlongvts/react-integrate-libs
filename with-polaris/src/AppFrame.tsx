@@ -5,6 +5,7 @@ import { HomeMinor, OrdersMinor, MarketingMinor, CategoriesMajor } from '@shopif
 import { observer } from 'mobx-react-lite';
 
 import Routes from './Routes';
+import ToastComp from './components/toast';
 
 const initObj = {
     home: false,
@@ -99,6 +100,7 @@ function AppFrame() {
             }
         >
             <Routes />
+            <ToastComp />
         </Frame>
     );
 }

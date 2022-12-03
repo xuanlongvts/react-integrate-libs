@@ -2,7 +2,6 @@ import { Route, Routes, Outlet } from 'react-router-dom';
 
 import Dashboard from './pages/dashboard';
 import RequireAuth from './requireAuth';
-import ToastComp from './components/toast';
 
 function ProductsCollection() {
     return (
@@ -66,7 +65,6 @@ function RoutesApp() {
                     <RequireAuth>
                         <>
                             <Layout />
-                            <ToastComp />
                         </>
                     </RequireAuth>
                 }
