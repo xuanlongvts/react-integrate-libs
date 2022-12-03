@@ -22,7 +22,14 @@ const ToastComp = () => {
 
     return (
         <div style={{ height: '250px' }}>
-            {active ? <Toast content={toastState.body || 'Message'} onDismiss={toggleActive} duration={3000} /> : null}
+            {active ? (
+                <Toast
+                    content={toastState.body || 'Message'}
+                    error={toastState.type === 'error'}
+                    onDismiss={toggleActive}
+                    duration={3000}
+                />
+            ) : null}
         </div>
     );
 };

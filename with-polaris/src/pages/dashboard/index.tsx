@@ -1,10 +1,12 @@
 import { useStores } from '../../store/RootStore';
 
+import { type } from '../../store/ToastStore';
+
 const Dashboard = () => {
     const { toastStore } = useStores();
 
     const handleToast = () => {
-        toastStore.openToast('Mo len ban');
+        toastStore.openToast('Mo len ban', type.error);
     };
 
     return (

@@ -1,5 +1,9 @@
-import { action, observable, makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { RootStore } from './RootStore';
+
+export const type = {
+    error: 'error',
+};
 
 export default class ToastStore {
     rootStore: RootStore;
@@ -7,6 +11,7 @@ export default class ToastStore {
     toastState = {
         open: false,
         body: null,
+        type: '',
     };
 
     constructor(rootStore: RootStore) {
@@ -16,13 +21,17 @@ export default class ToastStore {
     }
 
     // Communicate between stores
-    openToast(content: any) {
+    openToast(content: any, type?: string) {
         this.toastState.open = true;
         this.toastState.body = content;
+        if (type) {
+            this.toastState.type = type;
+        }
     }
 
     closeModal = () => {
         this.toastState.open = false;
         this.toastState.body = null;
+        this.toastState.type = '';
     };
 }
