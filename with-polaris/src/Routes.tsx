@@ -1,14 +1,9 @@
-import React from 'react';
 import { Route, Routes, Outlet } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 
-function Dashboard() {
-    return (
-        <div>
-            <h1>Dashboard</h1>
-            <Outlet />
-        </div>
-    );
-}
+import Dashboard from './pages/dashboard';
+import RequireAuth from './requireAuth';
+import ToastComp from './components/toast';
 
 function ProductsCollection() {
     return (
@@ -23,15 +18,6 @@ function ProductsInventory() {
     return (
         <div>
             <h1>Products Inventory</h1>
-            <Outlet />
-        </div>
-    );
-}
-
-function Settings() {
-    return (
-        <div>
-            <h1>Settings</h1>
             <Outlet />
         </div>
     );
@@ -55,12 +41,39 @@ function MarketingListView() {
     );
 }
 
+function Categories() {
+    return (
+        <div>
+            <h1>Categories</h1>
+            <Outlet />
+        </div>
+    );
+}
+
+function Layout() {
+    return (
+        <>
+            <Outlet />
+        </>
+    );
+}
+
 function RoutesApp() {
     return (
         <Routes>
-            <Route path="/">
+            <Route
+                path="/"
+                element={
+                    <RequireAuth>
+                        <>
+                            <Layout />
+                            <ToastComp />
+                        </>
+                    </RequireAuth>
+                }
+            >
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/categories" element={<Categories />} />
 
                 <Route path="/products/collections" element={<ProductsCollection />} />
                 <Route path="/products/inventory" element={<ProductsInventory />} />
@@ -72,4 +85,4 @@ function RoutesApp() {
     );
 }
 
-export default RoutesApp;
+export default observer(RoutesApp);

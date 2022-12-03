@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Frame, TopBar, Navigation } from '@shopify/polaris';
-import { HomeMinor, OrdersMinor, MarketingMinor } from '@shopify/polaris-icons';
+import { HomeMinor, OrdersMinor, MarketingMinor, CategoriesMajor } from '@shopify/polaris-icons';
 
 import Routes from './Routes';
 
 const initObj = {
     home: false,
+    categories: false,
     products: false,
     marketing: false,
 };
@@ -45,6 +46,13 @@ function AppFrame() {
                                 icon: HomeMinor,
                                 matches: statusOpen.home,
                                 onClick: () => handleExpand('home'),
+                            },
+                            {
+                                url: '/categories',
+                                label: 'Categories',
+                                icon: CategoriesMajor,
+                                matches: statusOpen.categories,
+                                onClick: () => handleExpand('categories'),
                             },
                             {
                                 url: location.pathname,
