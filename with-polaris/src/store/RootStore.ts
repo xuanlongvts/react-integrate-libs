@@ -1,9 +1,6 @@
-import { configure } from 'mobx';
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
 import ToastStore from './ToastStore';
-
-configure({ enforceActions: 'always' });
 
 export class RootStore {
     toastStore: ToastStore;
@@ -14,3 +11,5 @@ export class RootStore {
 }
 
 export const RootStoreContext = createContext(new RootStore());
+
+export const useStores = () => useContext(RootStoreContext);

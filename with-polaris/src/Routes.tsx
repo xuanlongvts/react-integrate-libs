@@ -1,5 +1,4 @@
 import { Route, Routes, Outlet } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
 
 import Dashboard from './pages/dashboard';
 import RequireAuth from './requireAuth';
@@ -85,4 +84,4 @@ function RoutesApp() {
     );
 }
 
-export default observer(RoutesApp);
+export default RoutesApp;

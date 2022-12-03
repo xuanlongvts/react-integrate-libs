@@ -1,26 +1,28 @@
-import { useContext, useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Toast } from '@shopify/polaris';
 import { observer } from 'mobx-react-lite';
 
-import { RootStoreContext } from '../../store/RootStore';
+import { useStores } from '../../store/RootStore';
 
 const ToastComp = () => {
-    const rootStore = useContext(RootStoreContext);
+    const { toastStore } = useStores();
 
-    const {
-        toastStore: { toastState },
-    } = rootStore;
-
-    console.log('toastState.open: ', toastState.open);
+    const { toastState } = toastStore;
 
     const [active, setActive] = useState(toastState.open);
 
-    const toggleActive = useCallback(() => setActive(active => !active), []);
+    const toggleActive = useCallback(() => {
+        setActive(active => !active);
+        toastStore.closeModal();
+    }, []);
+
+    useEffect(() => {
+        setActive(toastState.open);
+    }, [toastState.open]);
 
     return (
         <div style={{ height: '250px' }}>
-            {active ? <Toast content={toastState.body || 'Message'} onDismiss={toggleActive} duration={2000} /> : null}
-            {/* <Toast content={toastState.body || 'Message'} onDismiss={toggleActive} duration={2000} /> */}
+            {active ? <Toast content={toastState.body || 'Message'} onDismiss={toggleActive} duration={3000} /> : null}
         </div>
     );
 };

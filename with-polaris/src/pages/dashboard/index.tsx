@@ -1,13 +1,10 @@
-import { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
-
-import { RootStoreContext } from '../../store/RootStore';
+import { useStores } from '../../store/RootStore';
 
 const Dashboard = () => {
-    const rootStore = useContext(RootStoreContext);
+    const { toastStore } = useStores();
 
     const handleToast = () => {
-        rootStore.toastStore.openToast('Mo len ');
+        toastStore.openToast('Mo len ban');
     };
 
     return (
@@ -17,7 +14,6 @@ const Dashboard = () => {
             <button onClick={handleToast} style={{ cursor: 'pointer' }}>
                 Show Toast
             </button>
-            {/* <Outlet /> */}
         </div>
     );
 };

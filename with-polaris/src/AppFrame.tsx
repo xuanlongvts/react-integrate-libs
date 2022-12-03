@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Frame, TopBar, Navigation } from '@shopify/polaris';
 import { HomeMinor, OrdersMinor, MarketingMinor, CategoriesMajor } from '@shopify/polaris-icons';
+import { observer } from 'mobx-react-lite';
 
 import Routes from './Routes';
 
@@ -102,4 +103,4 @@ function AppFrame() {
     );
 }
 
-export default AppFrame;
+export default observer(AppFrame);
