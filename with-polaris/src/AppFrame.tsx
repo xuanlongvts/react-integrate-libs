@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Frame, TopBar, Navigation } from '@shopify/polaris';
-import { HomeMinor, OrdersMinor, MarketingMinor, ProductsMinor } from '@shopify/polaris-icons';
+import { HomeMinor, OrdersMinor, MarketingMinor } from '@shopify/polaris-icons';
 
 import Routes from './Routes';
+
+const initObj = {
+    home: false,
+    products: false,
+    marketing: false,
+};
 
 function AppFrame() {
     const location = useLocation();
 
-    // Track the open state of the mobile navigation
+    const [statusOpen, setStatusOpen] = useState(initObj);
+
     const [mobileNavigationActive, setMobileNavigationActive] = React.useState(false);
 
     const toggleMobileNavigationActive = React.useCallback(
         () => setMobileNavigationActive(mobileNavigationActive => !mobileNavigationActive),
         [],
     );
+
+    const handleExpand = (props: string) => {
+        setStatusOpen({
+            ...initObj,
+            [props]: true,
+        });
+    };
 
     return (
         <Frame
@@ -29,30 +43,34 @@ function AppFrame() {
                                 url: '/',
                                 label: 'Home',
                                 icon: HomeMinor,
+                                matches: statusOpen.home,
+                                onClick: () => handleExpand('home'),
                             },
                             {
-                                url: '/products',
+                                url: location.pathname,
                                 label: 'Products',
                                 icon: OrdersMinor,
                                 badge: '15',
+                                selected: statusOpen.products,
+                                onClick: () => handleExpand('products'),
                                 subNavigationItems: [
                                     {
                                         url: '/products/collections',
-                                        disabled: false,
                                         label: 'Collections',
                                     },
                                     {
                                         url: '/products/inventory',
-                                        disabled: false,
                                         label: 'Inventory',
                                     },
                                 ],
                             },
                             {
-                                url: '/marketing',
+                                url: location.pathname,
                                 label: 'Marketing',
                                 icon: MarketingMinor,
                                 badge: '15',
+                                selected: statusOpen.marketing,
+                                onClick: () => handleExpand('marketing'),
                                 subNavigationItems: [
                                     {
                                         url: '/marketing/reports',
@@ -63,23 +81,6 @@ function AppFrame() {
                                         url: '/marketing/live-view',
                                         disabled: false,
                                         label: 'Live view',
-                                    },
-                                ],
-                            },
-                            {
-                                url: '/settings',
-                                label: 'Settings',
-                                icon: ProductsMinor,
-                                subNavigationItems: [
-                                    {
-                                        url: '/settings/collections',
-                                        disabled: false,
-                                        label: 'Collections',
-                                    },
-                                    {
-                                        url: '/settings/inventory',
-                                        disabled: false,
-                                        label: 'Inventory',
                                     },
                                 ],
                             },
