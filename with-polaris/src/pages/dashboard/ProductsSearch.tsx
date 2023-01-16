@@ -106,6 +106,7 @@ const FormSearchProducts = (props: Props) => {
                             onChange={e => {
                                 // field.onChange(e);
                                 // handleGetDataProduct(e, index, nameActions.changeQuantity);
+                                console.log('e: ', e);
                                 let new_arr = [...field.value];
                                 new_arr[index].quantity = Number(e);
                                 field.onChange(new_arr);

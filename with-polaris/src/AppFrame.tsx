@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Frame, TopBar, Navigation } from '@shopify/polaris';
-import { HomeMinor, OrdersMinor, MarketingMinor, CategoriesMajor } from '@shopify/polaris-icons';
+import { HomeMinor, OrdersMinor, MarketingMinor, CategoriesMajor, PlusMinor, MinusMinor, ChevronDownMinor } from '@shopify/polaris-icons';
+import { Icon } from '@shopify/polaris';
+
 import { observer } from 'mobx-react-lite';
 
 import Routes from './Routes';
@@ -17,7 +19,7 @@ const initObj = {
 function AppFrame() {
     const location = useLocation();
 
-    const [statusOpen, setStatusOpen] = useState(initObj);
+    const [statusOpen, setStatusOpen] = useState<any>(initObj);
 
     const [mobileNavigationActive, setMobileNavigationActive] = React.useState(false);
 
@@ -29,7 +31,7 @@ function AppFrame() {
     const handleExpand = (props: string) => {
         setStatusOpen({
             ...initObj,
-            [props]: true,
+            [props]: !statusOpen[props],
         });
     };
 
@@ -46,21 +48,25 @@ function AppFrame() {
                                 url: '/',
                                 label: 'Home',
                                 icon: HomeMinor,
-                                matches: statusOpen.home,
+                                matches: location.pathname === '/',
                                 onClick: () => handleExpand('home'),
                             },
                             {
                                 url: '/categories',
                                 label: 'Categories',
                                 icon: CategoriesMajor,
-                                matches: statusOpen.categories,
+                                matches: location.pathname === '/categories',
                                 onClick: () => handleExpand('categories'),
                             },
                             {
-                                url: location.pathname,
+                                url: '#',
                                 label: 'Products',
                                 icon: OrdersMinor,
-                                badge: '15',
+                                badge: (
+                                    <div style={{ width: 15 }} onClick={() => handleExpand('products')}>
+                                        <Icon source={statusOpen.products ? MinusMinor : PlusMinor} color="subdued" />
+                                    </div>
+                                ),
                                 selected: statusOpen.products,
                                 onClick: () => handleExpand('products'),
                                 subNavigationItems: [
@@ -75,21 +81,24 @@ function AppFrame() {
                                 ],
                             },
                             {
-                                url: location.pathname,
+                                url: '#',
                                 label: 'Marketing',
                                 icon: MarketingMinor,
-                                badge: '15',
+                                badge: (
+                                    <div style={{ width: 15 }}>
+                                        <Icon source={statusOpen.marketing ? MinusMinor : PlusMinor} color="subdued" />
+                                    </div>
+                                ),
                                 selected: statusOpen.marketing,
                                 onClick: () => handleExpand('marketing'),
+                                expanded: statusOpen.marketing,
                                 subNavigationItems: [
                                     {
                                         url: '/marketing/reports',
-                                        disabled: false,
                                         label: 'Reports',
                                     },
                                     {
                                         url: '/marketing/live-view',
-                                        disabled: false,
                                         label: 'Live view',
                                     },
                                 ],
