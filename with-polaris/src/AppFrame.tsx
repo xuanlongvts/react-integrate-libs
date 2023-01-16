@@ -63,8 +63,16 @@ function AppFrame() {
                                 label: 'Products',
                                 icon: OrdersMinor,
                                 badge: (
-                                    <div style={{ width: 15 }} onClick={() => handleExpand('products')}>
-                                        <Icon source={statusOpen.products ? MinusMinor : PlusMinor} color="subdued" />
+                                    <div style={{ width: 15 }}>
+                                        <Icon
+                                            source={
+                                                ['/products/collections', '/products/inventory'].includes(location.pathname) ||
+                                                statusOpen.products
+                                                    ? MinusMinor
+                                                    : PlusMinor
+                                            }
+                                            color="subdued"
+                                        />
                                     </div>
                                 ),
                                 selected: statusOpen.products,
@@ -86,7 +94,15 @@ function AppFrame() {
                                 icon: MarketingMinor,
                                 badge: (
                                     <div style={{ width: 15 }}>
-                                        <Icon source={statusOpen.marketing ? MinusMinor : PlusMinor} color="subdued" />
+                                        <Icon
+                                            source={
+                                                ['/marketing/reports', '/marketing/live-view'].includes(location.pathname) ||
+                                                statusOpen.marketing
+                                                    ? MinusMinor
+                                                    : PlusMinor
+                                            }
+                                            color="subdued"
+                                        />
                                     </div>
                                 ),
                                 selected: statusOpen.marketing,
